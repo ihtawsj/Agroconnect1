@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --primary-green: #4CAF50;
+  --light-green: #e8f5e9;
+  --dark-green: #388e3c;
+  --white: #ffffff;
+  --text-color: #333333;
+  --border-color: #cccccc;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--light-green);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-green);
+  border-color: var(--dark-green);
+}
+
+.form-control {
+  border-color: var(--border-color);
+}
+
+.form-group label {
+  color: var(--text-color);
+}
