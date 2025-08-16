@@ -1,0 +1,125 @@
+<div class="main-content">
+  <div class="container">
+    <!-- Header Section -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h1 class="mb-1" style="color: var(--primary-green);">Order History</h1>
+            <p class="text-muted">Track your previous orders and delivery status</p>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="fas fa-history me-2" style="font-size: 1.5rem; color: var(--primary-green);"></i>
+            <span class="badge bg-info">{{ orders.length }} orders</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orders List -->
+    <div class="row" *ngIf="orders.length > 0">
+      <div class="col-12">
+        <div class="card fade-in">
+          <div class="card-header">
+            <h5 class="mb-0">
+              <i class="fas fa-list-alt me-2"></i>Your Orders
+            </h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th class="ps-4">Order Details</th>
+                    <th class="text-center">Items</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Total</th>
+                    <th class="text-center">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let order of orders" class="align-middle">
+                    <td class="ps-4">
+                      <div class="d-flex align-items-center">
+                        <div class="order-icon me-3">
+                          <i class="fas fa-receipt" style="font-size: 1.5rem; color: var(--primary-green);"></i>
+                        </div>
+                        <div>
+                          <h6 class="mb-0">Order #{{ order.id || 'N/A' }}</h6>
+                          <small class="text-muted">
+                            <i class="fas fa-shopping-bag me-1"></i>
+                            {{ order.items?.length || 0 }} items
+                          </small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="order-items">
+                        <div *ngFor="let item of order.items" class="mb-1">
+                          <small>
+                            {{ item.produce?.name || 'Product' }} x {{ item.quantity }}
+                          </small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <span class="fw-bold">{{ order.date || 'N/A' }}</span>
+                    </td>
+                    <td class="text-center">
+                      <span class="fw-bold text-success">₹{{ order.totalPrice || 0 }}</span>
+                    </td>
+                    <td class="text-center">
+                      <span class="badge bg-success">Delivered</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="orders.length === 0">
+      <i class="fas fa-history"></i>
+      <h4>No Orders Yet</h4>
+      <p>Start shopping to see your order history here</p>
+      <button routerLink="/produce" class="btn btn-success">
+        <i class="fas fa-shopping-basket me-2"></i>Start Shopping
+      </button>
+    </div>
+
+    <!-- Order Statistics -->
+    <div class="row mt-5" *ngIf="orders.length > 0">
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <i class="fas fa-shopping-bag mb-3" style="font-size: 2rem; color: var(--success);"></i>
+            <h5 class="card-title">{{ orders.length }}</h5>
+            <p class="card-text">Total Orders</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <i class="fas fa-rupee-sign mb-3" style="font-size: 2rem; color: var(--info);"></i>
+            <h5 class="card-title">₹{{ getTotalSpent() }}</h5>
+            <p class="card-text">Total Spent</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <i class="fas fa-star mb-3" style="font-size: 2rem; color: var(--warning);"></i>
+            <h5 class="card-title">100%</h5>
+            <p class="card-text">Satisfaction Rate</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

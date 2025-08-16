@@ -1,0 +1,15 @@
+# Spring Boot
+AgroConnect-3/target/
+*.jar
+*.war
+*.class
+
+# Angular
+agroconnect-frontend/node_modules/
+agroconnect-frontend/dist/
+agroconnect-frontend/.angular/
+
+# IDEs & OS
+.vscode/
+.idea/
+.DS_Store

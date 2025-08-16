@@ -1,0 +1,142 @@
+<div class="main-content">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="card fade-in">
+          <div class="card-header text-center">
+            <div class="mb-3">
+              <i class="fas fa-user-plus" style="font-size: 3rem; color: var(--white);"></i>
+            </div>
+            <h2 class="mb-0">Join AgroConnect</h2>
+            <p class="mb-0 opacity-75">Create your account to start shopping</p>
+          </div>
+          <div class="card-body p-4">
+            <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <label class="form-label">Full Name</label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="fas fa-user"></i>
+                    </span>
+                    <input 
+                      type="text" 
+                      class="form-control" 
+                      name="name" 
+                      [(ngModel)]="user.name" 
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-12 mb-3">
+                  <label class="form-label">Email Address</label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                    <input 
+                      type="email" 
+                      class="form-control" 
+                      name="email" 
+                      [(ngModel)]="user.email" 
+                      placeholder="Enter your email"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-12 mb-3">
+                  <label class="form-label">Password</label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                    <input 
+                      type="password" 
+                      class="form-control" 
+                      name="password" 
+                      [(ngModel)]="user.password" 
+                      placeholder="Create a strong password"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-12 mb-4">
+                  <label class="form-label">Account Type</label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="fas fa-users"></i>
+                    </span>
+                    <select class="form-control" name="role" [(ngModel)]="user.role" required>
+                      <option value="" disabled selected>Select your account type</option>
+                      <option value="BUYER">Buyer - I want to purchase produce</option>
+                      <option value="FARMER">Farmer - I want to sell produce</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-grid">
+                <button type="submit" class="btn btn-success btn-lg">
+                  <i class="fas fa-user-plus me-2"></i>Create Account
+                </button>
+              </div>
+
+              <div class="alert alert-success mt-3" *ngIf="message">
+                <i class="fas fa-check-circle me-2"></i>{{ message }}
+              </div>
+
+              <div class="alert alert-danger mt-3" *ngIf="error">
+                <i class="fas fa-exclamation-triangle me-2"></i>{{ error }}
+              </div>
+            </form>
+
+            <hr class="my-4">
+
+            <div class="text-center">
+              <p class="mb-0">Already have an account? 
+                <a routerLink="/login" class="text-decoration-none fw-bold" style="color: var(--primary-green);">
+                  Sign in here
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Benefits Section -->
+        <div class="row mt-4">
+          <div class="col-md-4 text-center">
+            <div class="card h-100">
+              <div class="card-body">
+                <i class="fas fa-leaf mb-2" style="font-size: 2rem; color: var(--success);"></i>
+                <h6 class="card-title">Fresh Products</h6>
+                <p class="card-text small">Direct from local farmers</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="card h-100">
+              <div class="card-body">
+                <i class="fas fa-truck mb-2" style="font-size: 2rem; color: var(--info);"></i>
+                <h6 class="card-title">Fast Delivery</h6>
+                <p class="card-text small">Same day or next day</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="card h-100">
+              <div class="card-body">
+                <i class="fas fa-shield-alt mb-2" style="font-size: 2rem; color: var(--warning);"></i>
+                <h6 class="card-title">Secure Payment</h6>
+                <p class="card-text small">100% secure transactions</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

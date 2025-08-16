@@ -1,0 +1,236 @@
+<div class="main-content">
+  <div class="container">
+    <!-- Header Section -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h1 class="mb-1" style="color: var(--primary-green);">Shopping Cart</h1>
+            <p class="text-muted">Review and manage your selected items</p>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="fas fa-shopping-cart me-2" style="font-size: 1.5rem; color: var(--primary-green);"></i>
+            <span class="badge bg-primary">{{ cartItems.length }} items</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div class="row mb-3" *ngIf="loading">
+      <div class="col-12">
+        <div class="alert alert-info">
+          <i class="fas fa-spinner fa-spin me-2"></i>
+          <strong>Loading your cart...</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error State -->
+    <div class="row mb-3" *ngIf="error">
+      <div class="col-12">
+        <div class="alert alert-danger">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          <strong>Error Loading Cart</strong><br>
+          <small>{{ error }}</small>
+          <div class="mt-2">
+            <button class="btn btn-outline-danger btn-sm" (click)="loadCartItems()">
+              <i class="fas fa-redo me-1"></i>Retry
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div class="row mb-3" *ngIf="successMessage">
+      <div class="col-12">
+        <div class="alert alert-success">
+          <i class="fas fa-check-circle me-2"></i>{{ successMessage }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3" *ngIf="errorMessage">
+      <div class="col-12">
+        <div class="alert alert-danger">
+          <i class="fas fa-exclamation-triangle me-2"></i>{{ errorMessage }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Items -->
+    <div class="row" *ngIf="!loading && !error && cartItems.length > 0">
+      <div class="col-lg-8">
+        <div class="card fade-in">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+              <i class="fas fa-list me-2"></i>Cart Items
+            </h5>
+            <button class="btn btn-outline-danger btn-sm" (click)="clearCart()">
+              <i class="fas fa-trash me-1"></i>Clear Cart
+            </button>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th class="ps-4">Product</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Total</th>
+                    <th class="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of cartItems" class="align-middle">
+                    <td class="ps-4">
+                      <div class="d-flex align-items-center">
+                        <div class="product-icon me-3">
+                          <i class="fas fa-seedling" style="font-size: 1.5rem; color: var(--primary-green);"></i>
+                        </div>
+                        <div>
+                          <h6 class="mb-0">{{ item.produceName }}</h6>
+                          <small class="text-muted">{{ item.category }}</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="input-group input-group-sm" style="width: 120px; margin: 0 auto;">
+                        <button 
+                          class="btn btn-outline-secondary" 
+                          type="button"
+                          (click)="updateQuantity(item.id, (quantities[item.id] || item.quantity) - 1)"
+                          [disabled]="(quantities[item.id] || item.quantity) <= 1"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <input 
+                          type="number" 
+                          class="form-control text-center" 
+                          [value]="quantities[item.id] || item.quantity"
+                          min="1"
+                          [max]="item.availableQuantity || 999"
+                          #quantityInput
+                          (blur)="updateQuantity(item.id, +quantityInput.value || 1)"
+                          (keyup.enter)="updateQuantity(item.id, +quantityInput.value || 1)"
+                          style="border-left: 0; border-right: 0;"
+                        />
+                        <button 
+                          class="btn btn-outline-secondary" 
+                          type="button"
+                          (click)="updateQuantity(item.id, (quantities[item.id] || item.quantity) + 1)"
+                          [disabled]="(quantities[item.id] || item.quantity) >= (item.availableQuantity || 999)"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                      <small class="text-muted d-block mt-1">
+                        Max: {{ item.availableQuantity || 'N/A' }}
+                      </small>
+                    </td>
+                    <td class="text-center">
+                      <span class="fw-bold">₹{{ item.price }}</span>
+                    </td>
+                    <td class="text-center">
+                      <span class="fw-bold text-success">₹{{ (quantities[item.id] || item.quantity) * item.price }}</span>
+                    </td>
+                    <td class="text-center">
+                      <button 
+                        class="btn btn-outline-danger btn-sm" 
+                        (click)="removeItem(item.id)"
+                        title="Remove item"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="col-lg-4">
+        <div class="card fade-in">
+          <div class="card-header">
+            <h5 class="mb-0">
+              <i class="fas fa-receipt me-2"></i>Order Summary
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-2">
+              <span>Subtotal:</span>
+              <span class="fw-bold">₹{{ getTotalPrice().toFixed(2) }}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span>Delivery:</span>
+              <span class="text-success">Free</span>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between mb-3">
+              <span class="fw-bold">Total:</span>
+              <span class="fw-bold fs-5 text-success">₹{{ getTotalPrice().toFixed(2) }}</span>
+            </div>
+            
+            <button 
+              class="btn btn-success w-100 btn-lg" 
+              (click)="placeOrder()"
+              [disabled]="cartItems.length === 0 || isPlacingOrder"
+            >
+              <i class="fas fa-credit-card me-2" *ngIf="!isPlacingOrder"></i>
+              <i class="fas fa-spinner fa-spin me-2" *ngIf="isPlacingOrder"></i>
+              {{ isPlacingOrder ? 'Placing Order...' : 'Place Order' }}
+            </button>
+            
+            <div class="text-center mt-3">
+              <small class="text-muted">
+                <i class="fas fa-shield-alt me-1"></i>
+                Secure payment processing
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delivery Info -->
+        <div class="card mt-3">
+          <div class="card-body">
+            <h6 class="card-title">
+              <i class="fas fa-truck me-2"></i>Delivery Information
+            </h6>
+            <ul class="list-unstyled small">
+              <li class="mb-1">
+                <i class="fas fa-check text-success me-2"></i>Same day delivery
+              </li>
+              <li class="mb-1">
+                <i class="fas fa-check text-success me-2"></i>Free delivery on orders above ₹500
+              </li>
+              <li class="mb-1">
+                <i class="fas fa-check text-success me-2"></i>Quality guarantee
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty Cart State -->
+    <div class="row" *ngIf="!loading && !error && cartItems.length === 0">
+      <div class="col-12">
+        <div class="card text-center">
+          <div class="card-body py-5">
+            <i class="fas fa-shopping-cart mb-3" style="font-size: 4rem; color: var(--primary-green);"></i>
+            <h4 class="mb-3">Your Cart is Empty</h4>
+            <p class="text-muted mb-4">Add some fresh produce to get started with your shopping</p>
+            <button routerLink="/produce" class="btn btn-success btn-lg">
+              <i class="fas fa-shopping-basket me-2"></i>Browse Products
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

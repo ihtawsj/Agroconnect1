@@ -1,0 +1,23 @@
+.dashboard-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  .card {
+    padding: 15px;
+    background-color: #e0ffe0;
+    border: 1px solid #7dbb7d;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #0b4f0b;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+  
+  .card:hover {
+    background-color: #c8ffc8;
+    transform: scale(1.02);
+  }
+  

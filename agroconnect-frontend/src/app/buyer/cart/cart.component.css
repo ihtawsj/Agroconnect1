@@ -1,0 +1,57 @@
+/* Loading state for quantity updates */
+.quantity-updating {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.quantity-updating input {
+  background-color: #f8f9fa;
+}
+
+/* Smooth transitions for quantity changes */
+.input-group input {
+  transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+}
+
+/* Button hover effects */
+.btn-outline-secondary:hover {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  color: white;
+}
+
+/* Spinner animation for updating state */
+.fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Disabled state styling */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Total price animation */
+.text-success {
+  transition: color 0.3s ease;
+}
+
+/* Card hover effects */
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

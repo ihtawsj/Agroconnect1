@@ -1,0 +1,467 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-green: #2E7D32;
+  --primary-green-light: #4CAF50;
+  --primary-green-dark: #1B5E20;
+  --secondary-green: #81C784;
+  --accent-green: #A5D6A7;
+  --light-green: #E8F5E8;
+  --white: #FFFFFF;
+  --light-gray: #F8F9FA;
+  --gray: #6C757D;
+  --dark-gray: #343A40;
+  --success: #28A745;
+  --warning: #FFC107;
+  --danger: #DC3545;
+  --info: #17A2B8;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --box-shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
+  line-height: 1.6;
+}
+
+/* Custom Bootstrap Overrides */
+.navbar {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%) !important;
+  box-shadow: var(--box-shadow);
+  padding: 1rem 0;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--white) !important;
+  text-decoration: none;
+}
+
+.navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+  margin: 0 0.25rem;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--white) !important;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Authentication Status */
+.auth-status {
+  padding: 1rem 0;
+  background: var(--white);
+  border-bottom: 1px solid #E9ECEF;
+}
+
+.auth-status .alert {
+  margin-bottom: 0;
+  border-radius: var(--border-radius);
+  border: none;
+  background: linear-gradient(135deg, #FFF3CD 0%, #FFEAA7 100%);
+  color: var(--dark-gray);
+  border-left: 4px solid var(--warning);
+}
+
+.auth-status .alert-link {
+  color: var(--primary-green);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-status .alert-link:hover {
+  color: var(--primary-green-dark);
+  text-decoration: underline;
+}
+
+/* Card Styling */
+.card {
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: var(--box-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
+  color: var(--white);
+  border: none;
+  padding: 1.25rem;
+  font-weight: 600;
+}
+
+/* Product Cards */
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.product-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background: var(--light-green);
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.price-tag {
+  margin-top: 0.5rem;
+}
+
+/* Button Styling */
+.btn {
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  border: none;
+  text-transform: none;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-green-dark) 0%, var(--primary-green) 100%);
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--success) 0%, #20C997 100%);
+  border: none;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #1E7E34 0%, var(--success) 100%);
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, var(--warning) 0%, #FFB74D 100%);
+  border: none;
+  color: var(--dark-gray);
+}
+
+.btn-warning:hover {
+  background: linear-gradient(135deg, #E0A800 0%, var(--warning) 100%);
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow);
+  color: var(--dark-gray);
+}
+
+.btn-outline-primary {
+  border: 2px solid var(--primary-green);
+  color: var(--primary-green);
+  background: transparent;
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary-green);
+  border-color: var(--primary-green);
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow);
+}
+
+.btn-outline-danger {
+  border: 2px solid var(--danger);
+  color: var(--danger);
+  background: transparent;
+}
+
+.btn-outline-danger:hover {
+  background: var(--danger);
+  border-color: var(--danger);
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow);
+}
+
+/* Form Styling */
+.form-control {
+  border-radius: var(--border-radius);
+  border: 2px solid #E9ECEF;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: var(--white);
+}
+
+.form-control:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+  background-color: var(--white);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--dark-gray);
+  margin-bottom: 0.5rem;
+}
+
+/* Input Groups */
+.input-group-text {
+  background-color: var(--light-green);
+  border: 2px solid #E9ECEF;
+  border-right: none;
+  color: var(--primary-green);
+  font-weight: 500;
+}
+
+.input-group .form-control {
+  border-left: none;
+}
+
+.input-group .form-control:focus + .input-group-text,
+.input-group .form-control:focus {
+  border-color: var(--primary-green);
+}
+
+/* Table Styling */
+.table {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+.table thead th {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
+  color: var(--white);
+  border: none;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+  background-color: var(--light-green);
+  transform: scale(1.01);
+}
+
+.table tbody td {
+  padding: 1rem;
+  border-color: #E9ECEF;
+  vertical-align: middle;
+}
+
+/* Container and Layout */
+.container {
+  max-width: 1200px;
+}
+
+.main-content {
+  min-height: calc(100vh - 80px);
+  padding: 2rem 0;
+}
+
+/* Dashboard Specific */
+.dashboard-welcome {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
+  color: var(--white);
+  padding: 3rem 2rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  margin-bottom: 2rem;
+  box-shadow: var(--box-shadow);
+}
+
+.dashboard-welcome h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.dashboard-welcome p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.dashboard-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.dashboard-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+  border-top: 4px solid var(--primary-green);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.dashboard-card h3 {
+  color: var(--primary-green);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.dashboard-card p {
+  color: var(--gray);
+  margin-bottom: 1.5rem;
+}
+
+/* Alert Styling */
+.alert {
+  border-radius: var(--border-radius);
+  border: none;
+  padding: 1rem 1.5rem;
+  font-weight: 500;
+}
+
+.alert-success {
+  background-color: var(--light-green);
+  color: var(--primary-green-dark);
+  border-left: 4px solid var(--success);
+}
+
+.alert-danger {
+  background-color: #F8D7DA;
+  color: var(--danger);
+  border-left: 4px solid var(--danger);
+}
+
+.alert-warning {
+  background: linear-gradient(135deg, #FFF3CD 0%, #FFEAA7 100%);
+  color: var(--dark-gray);
+  border-left: 4px solid var(--warning);
+}
+
+/* Loading and Empty States */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--gray);
+}
+
+.empty-state i {
+  font-size: 3rem;
+  color: var(--secondary-green);
+  margin-bottom: 1rem;
+}
+
+/* Badge Styling */
+.badge {
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius);
+}
+
+.bg-success {
+  background: linear-gradient(135deg, var(--success) 0%, #20C997 100%) !important;
+}
+
+.bg-primary {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%) !important;
+}
+
+.bg-info {
+  background: linear-gradient(135deg, var(--info) 0%, #5BC0DE 100%) !important;
+}
+
+.bg-warning {
+  background: linear-gradient(135deg, var(--warning) 0%, #FFB74D 100%) !important;
+  color: var(--dark-gray) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-welcome h1 {
+    font-size: 2rem;
+  }
+  
+  .dashboard-actions {
+    grid-template-columns: 1fr;
+  }
+  
+  .navbar-nav {
+    text-align: center;
+  }
+  
+  .navbar-nav .nav-link {
+    margin: 0.25rem 0;
+  }
+  
+  .table-responsive {
+    font-size: 0.9rem;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-green);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-green-dark);
+}

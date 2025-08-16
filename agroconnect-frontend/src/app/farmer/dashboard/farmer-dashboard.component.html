@@ -1,0 +1,66 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+          <h3 class="mb-0">
+            <i class="fas fa-tractor me-2"></i>
+            Farmer Dashboard
+          </h3>
+          <p class="mb-0 mt-2">Welcome! Manage your produce and orders here.</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <!-- Upload Produce Card -->
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 border-0 shadow-sm hover-card" (click)="navigateToUpload()">
+                <div class="card-body text-center">
+                  <div class="icon-circle bg-primary mb-3">
+                    <i class="fas fa-plus text-white"></i>
+                  </div>
+                  <h5 class="card-title">Upload Produce</h5>
+                  <p class="card-text">Add new produce items to your inventory with images and details.</p>
+                  <button class="btn btn-primary">
+                    <i class="fas fa-arrow-right me-1"></i>Get Started
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- View Produce Card -->
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 border-0 shadow-sm hover-card" (click)="navigateToViewProduce()">
+                <div class="card-body text-center">
+                  <div class="icon-circle bg-success mb-3">
+                    <i class="fas fa-list text-white"></i>
+                  </div>
+                  <h5 class="card-title">View My Produce</h5>
+                  <p class="card-text">View, edit, and delete your current produce listings.</p>
+                  <button class="btn btn-success">
+                    <i class="fas fa-arrow-right me-1"></i>View All
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Orders Card -->
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 border-0 shadow-sm hover-card" (click)="navigateToOrders()">
+                <div class="card-body text-center">
+                  <div class="icon-circle bg-warning mb-3">
+                    <i class="fas fa-shopping-cart text-white"></i>
+                  </div>
+                  <h5 class="card-title">View Orders</h5>
+                  <p class="card-text">Track orders from buyers and manage your sales.</p>
+                  <button class="btn btn-warning">
+                    <i class="fas fa-arrow-right me-1"></i>View Orders
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
